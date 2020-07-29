@@ -11,16 +11,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Got Jokes?',
+      debugShowCheckedModeBanner: false,
+      title: 'Got Dad Jokes?',
       theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
+        primarySwatch: Colors.yellow,
+        scaffoldBackgroundColor: Colors.lightBlue[100],
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Click 4 a Joke'),
+      home: MyHomePage(
+        title: 'Very Funny, Dad.',
+        ),
     );
   }
 }
 
+// Create a stateful application. Instantiating the class we wiil build on.
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
@@ -30,6 +35,7 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
+// Building on the stateful widget application.
 class _MyHomePageState extends State<MyHomePage> {
   String _joke = "";
 
@@ -46,25 +52,28 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-
         child: Column(
-
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              '$_joke',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+            Padding(
+              padding: const EdgeInsets.all(50.0), // Add padding around Text widget
+              child: Text(
+                '$_joke',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 28),
+              ),
+            )
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           _joke = await getJoke();
-          setState((){});
+          setState((){}); // set the new state to update the Text widget
         },
         tooltip: 'Refresh Joke',
-        child: Icon(Icons.star),
+        child: Icon(Icons.sentiment_very_satisfied),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
