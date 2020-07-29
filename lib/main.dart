@@ -70,8 +70,11 @@ class _MyHomePageState extends State<MyHomePage> {
   }
   Future<String> getJoke() async {
   final url = 'https://icanhazdadjoke.com/';
-  var response = await http.get(url, headers: {"Accept": "text/plain"},);
 
-  return response.body;
+  var jsonString = await http.get(url, headers: {"Accept": "application/json"},);
+  Map<String, dynamic> result = convert.jsonDecode(jsonString.body);
+
+  // print(result['joke']);
+  return result['joke'];
   }
 }
