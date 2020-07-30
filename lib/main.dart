@@ -61,7 +61,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 '$_joke',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 28),
+                  fontSize: 38,
+                  fontFamily: "Times New Roman",),
               ),
             )
           ],
@@ -82,7 +83,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   var jsonString = await http.get(url, headers: {"Accept": "application/json"},);
   Map<String, dynamic> result = convert.jsonDecode(jsonString.body);
-
   // print(result['joke']);
   return result['joke'];
   }
